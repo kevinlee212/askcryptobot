@@ -34,7 +34,6 @@ def get_crypto_dict(option_selected):
 @app.event("message")
 def handle_message_events(body, logger):
     logger.info(body)
-    print(body)
 
 
 @app.event("app_mention")
@@ -142,7 +141,7 @@ def action_button_click2(body, ack, say):
         request_time = datetime.fromtimestamp(updated_at).strftime(
             "%m-%d-%y %H:%M:%S"
         )
-        say(f"Crypto Market Overview - Last updated at:  {request_time}")
+        say(f"Crypto Market Overview - Last Updated at:  {request_time}")
         say(
             f"There are {global_data['active_cryptocurrencies']} "
             f"active cryptocurrencies."
@@ -161,9 +160,9 @@ def action_button_click2(body, ack, say):
             for each_key in coin_price_info.keys():
                 coin_price = coin_price_info[each_key]["usd"]
                 say(
-                    f"{coin_symbol_id[each_cmc[0]]:20}:  {each_cmc[0]:6} "
-                    f" has a Market Cap of : {each_cmc[1]:.2f}% of the total supply."
-                    f" (USD) ${coin_price:.4f}"
+                    f"{coin_symbol_id[each_cmc[0]]:20}:  {each_cmc[0]:6}"
+                    f" market cap is {each_cmc[1]:.2f}% of the total"
+                    f" supply.  (USD) ${coin_price:.4f}"
                 )
     elif input_selected == "price":
         coin_price_value = cg.get_price(id, vs_currencies="usd")
@@ -180,7 +179,7 @@ def action_button_click2(body, ack, say):
             coin_price_value = cg.get_price(each_id, vs_currencies="usd")
             for each_key in coin_price_value.keys():
                 say(
-                    f"{each_key} ({coin_dict[each_key]}):"
+                    f"{each_key} ({coin_dict[each_key]}): "
                     f"Price in USD ${coin_price_value[each_key]['usd']}"
                 )
 
